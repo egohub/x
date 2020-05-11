@@ -1,35 +1,39 @@
-
 angular.module('app.korea', [])
 
 
 .controller('koreaCtrl', KoreaCtrl)
-.controller('koreaWatchCtrl', koreaWatchCtrl)
+    .controller('koreaWatchCtrl', koreaWatchCtrl)
 
 
-function KoreaCtrl($scope, $log, $timeout, config, DataLoader) {
+function KoreaCtrl($scope, $log, $timeout, $ionicLoading, config, DataLoader) {
 
-        var singlePostApi = 'https://moviechannel.herokuapp.com/xxx';
-        $scope.moreItems = false;
+    var singlePostApi = 'https://moviechannel.herokuapp.com/xxx';
+    $scope.moreItems = false;
 
-        $scope.loadPosts = function() {
-
+    $scope.loadPosts = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner> ',
+            duration: 3000
+        }).then(function() {
+            console.log("The loading indicator is now displayed");
+        });
         // Get all of our posts
         DataLoader.get('https://moviechannel.herokuapp.com/xxx/page/1').then(function(response) {
-
+            $ionicLoading.hide();
             $scope.posts = response.data;
 
             $scope.moreItems = true;
 
-            console.log( response.data);
+            console.log(response.data);
 
         }, function(response) {
-            console.log( response.data);
+            console.log(response.data);
         });
 
-        }
-        $scope.loadPosts();
-        paged = 2;
-        $scope.loadMore = function() {
+    }
+    $scope.loadPosts();
+    paged = 2;
+    $scope.loadMore = function() {
         if (!$scope.moreItems) {
             return;
         }
@@ -51,22 +55,29 @@ function KoreaCtrl($scope, $log, $timeout, config, DataLoader) {
             $scope.$broadcast('scroll.infiniteScrollComplete');
             $scope.$broadcast('scroll.resize');
         }, 1000);
-        }
-        $scope.moreDataExists = function() {
+    }
+    $scope.moreDataExists = function() {
         return $scope.moreItems;
-        }
+    }
 
-        $scope.doRefresh = function() {
+    $scope.doRefresh = function() {
         $timeout(function() {
             $scope.loadPosts();
             $scope.$broadcast('scroll.refreshComplete');
         }, 1000);
-        };
-    }
+    };
+}
 
 
-    function koreaWatchCtrl($scope, $stateParams, DataLoader, config) {
-        DataLoader.get('https://moviechannel.herokuapp.com/xxx/' + $stateParams.id).then(function(resp) {
-            $scope.news = resp.data;
-        });
-    }
+function koreaWatchCtrl($scope, $stateParams, $ionicLoading, DataLoader, config) {
+    $ionicLoading.show({
+        template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner> ',
+        duration: 3000
+    }).then(function() {
+        console.log("The loading indicator is now displayed");
+    });
+    DataLoader.get('https://moviechannel.herokuapp.com/xxx/' + $stateParams.id).then(function(resp) {
+        $ionicLoading.hide();
+        $scope.news = resp.data;
+    });
+}

@@ -1,91 +1,64 @@
-<!-- <ion-view title="homeDetail" id="page5">
-  <ion-content padding="false" class="has-header">
-    <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
-      <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-    </div>
-    <ion-list id="homeDetail-list1">
-      <ion-item id="homeDetail-list-item8">Item 1</ion-item>
-      <ion-item id="homeDetail-list-item9" ui-sref="tabs.watch()">Item 2</ion-item>
-      <ion-item id="homeDetail-list-item10" ui-sref="tabs.watch()">Item 3</ion-item>
-    </ion-list>
-    <a ui-sref="tabs.watch()" id="homeDetail-button1" class="button button-assertive button-block">Watch</a>
-    <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider2" delegate-handle="slider2" id="homeDetail-slider2" style="width:150px;height:200px;">
-      <ion-slide-page id="homeDetail-slide28" style="background:url(&quot;img/20471860_853408838156586_702453817_n-141x200.jpg&quot;) no-repeat center;background-size:cover;">
-        <div style="display:table;width:100%;height:100%;">
-          <div style="display:table-row;">
-            <div style="display:table-cell;vertical-align:middle;"></div>
-          </div>
-        </div>
-      </ion-slide-page>
-      <ion-slide-page id="homeDetail-slide29" style="background:url(&quot;img/enmey-at-the-gate-2-133x200.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-      <ion-slide-page id="homeDetail-slide210" style="background:url(&quot;img/WE6rB9dZRTiIWQlP5qsA_kitten3.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-    </ion-slides>
-  </ion-content>
-</ion-view> -->
-
 <ion-view title="" id="page5">
-  <!-- <div class="bar bar-positive bar-subheader">
-      <h2 class="title">{{news.title}}</h2>
-  </div> -->
-  <ion-content padding="true" class="has-header">
-    <h3 id="about-heading1" style="color:#000000;text-align:center;">{{data.title}}</h3>
-      
 
-      <div>
-        <img ng-src="{{data.img}}" style="display: block; width: 100%; height: 270px; margin-left: auto; margin-right: auto;">
-    </div>
-    <div class="spacer" style="width: 300px; height: 15px;"></div>
-    <div class="button-bar bar-positive">
-        <a class="button button-tabs" ng-class="{'active': tabName=='Overview'}" ng-click="tabName='Overview'">
+    <ion-content padding="true" class="has-header">
+        <h3 id="about-heading1" style="color:#000000;text-align:center;" class="titletext">{{data.title}}</h3>
+
+
+        <div>
+            <img ng-src="{{data.img}}" on-error-src="img/loading.gif" style="display: block; width: 100%; height: 270px; margin-left: auto; margin-right: auto;">
+        </div>
+        <div class="spacer" style="width: 300px; height: 15px;"></div>
+        <div class="button-bar bar-positive">
+            <a class="button button-tabs cattext" ng-class="{'active': tabName=='Overview'}" ng-click="tabName='Overview'">
             Overview
         </a>
-        <a class="button button-tabs" ng-class="{'active': tabName=='tab3'}" ng-click="tabName='tab3'">
+            <a class="button button-tabs cattext" ng-class="{'active': tabName=='tab3'}" ng-click="tabName='tab3'">
             Download
         </a>
-        <!-- <a class="button button-tabs" ng-class="{'active': tabName=='tab2'}" ng-click="tabName='tab2'">
+            <!-- <a class="button button-tabs" ng-class="{'active': tabName=='tab2'}" ng-click="tabName='tab2'">
             Info
         </a> -->
-        <a class="button button-tabs" ng-class="{'active': tabName=='tab4'}" ng-click="tabName='tab4'">
+            <a class="button button-tabs  titletext" ng-class="{'active': tabName=='tab4'}" ng-click="tabName='tab4'">
             Trailer
         </a>
-    </div>
+        </div>
 
 
-    <div ng-switch="tabName">
-        <div class="spacer" style="width: 300px; height: 15px;"></div>
-        <div ng-switch-when="Overview">
-          <div class="card">
-            <ion-item ng-init="g=data.category">Genre<span class="badge badge-assertive">{{g}}</span> </ion-item>
-            <ion-item ng-init="d=data.director">Director<span class="badge badge-assertive">{{d}}</span> </ion-item>
-        </div>
-            <p class="mmtext">{{data.description}}</p>
-        </div>
-        <div class="card" ng-switch-when="tab2">
-            <ion-list>
-                <ion-item ng-init="g=data.category">Genre<span class="badge badge-assertive">{{g}}</span> </ion-item>
-                <ion-item ng-init="d=data.director">Director<span class="badge badge-assertive">{{d}}</span> </ion-item>
-            </ion-list>
-
-            <!-- <span class="badge badge-assertive">{{data.category}}</span> -->
-        </div>
-        <div ng-switch-when="tab3">
-            <div class="spacer" style="width: 300px; height: 30px;"></div>
-            <ion-list>
-                <ion-item href="{{d.url}}" target="_blank" ng-repeat="d in data.download">{{d.site}}<span class="badge badge-assertive">{{d.size}}</span> </ion-item>
-            </ion-list>
+        <div ng-switch="tabName">
             <div class="spacer" style="width: 300px; height: 15px;"></div>
+            <div ng-switch-when="Overview">
+                <div class="card">
+                    <ion-item ng-init="g=data.category">Genre<span class="badge badge-assertive">{{g}}</span> </ion-item>
+                    <ion-item ng-init="d=data.director">Director<span class="badge badge-assertive">{{d}}</span> </ion-item>
+                </div>
+                <p class="mmtext">{{data.description}}</p>
+            </div>
+            <div class="card" ng-switch-when="tab2">
+                <ion-list>
+                    <ion-item ng-init="g=data.category">Genre<span class="badge badge-assertive">{{g}}</span> </ion-item>
+                    <ion-item ng-init="d=data.director">Director<span class="badge badge-assertive">{{d}}</span> </ion-item>
+                </ion-list>
 
-            <ion-list>
-                <a class="item-icon-left assertive item" href="{{p.url}}" target="_blank" ng-repeat="p in data.mega"><i class="icon ion-ios-play"></i>Mega.nz (Only PC)</a>
-                <a class="item-icon-left assertive item" ui-sref="tabs.watch({id:p.url})" ng-repeat="p in data.yadi"><i class="icon ion-ios-play"></i>Yandex (PC and Mobile)</a>
-            </ion-list>
-        </div>
-        <div class="card" ng-switch-when="tab4">
-            <div class="spacer" style="width: 300px; height: 15px;"></div>
-            <div ng-init="tube=data.embedUrl+'?rel=0&amp;showinfo=0'" style="position:relative;overflow:hidden;padding-bottom:56.25%;height:0;" id="setting-video1">
-                <iframe src="{{data.embedUrl}}" frameborder="0" allowfullscreen="" width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                <!-- <span class="badge badge-assertive">{{data.category}}</span> -->
+            </div>
+            <div ng-switch-when="tab3">
+                <div class="spacer" style="width: 300px; height: 30px;"></div>
+                <ion-list>
+                    <ion-item href="{{d.url}}" target="_blank" ng-repeat="d in data.download">{{d.site}}<span class="badge badge-assertive">{{d.size}}</span> </ion-item>
+                </ion-list>
+                <div class="spacer" style="width: 300px; height: 15px;"></div>
+
+                <ion-list>
+                    <a class="item-icon-left assertive item" href="{{p.url}}" target="_blank" ng-repeat="p in data.mega"><i class="icon ion-ios-play"></i>Mega.nz (Only PC)</a>
+                    <a class="item-icon-left assertive item" ui-sref="tabs.watch({id:p.url})" ng-repeat="p in data.yadi"><i class="icon ion-ios-play"></i>Yandex (PC and Mobile)</a>
+                </ion-list>
+            </div>
+            <div class="card" ng-switch-when="tab4">
+                <div class="spacer" style="width: 300px; height: 15px;"></div>
+                <div ng-init="tube=data.embedUrl+'?rel=0&amp;showinfo=0'" style="position:relative;overflow:hidden;padding-bottom:56.25%;height:0;" id="setting-video1">
+                    <iframe src="{{data.embedUrl}}" frameborder="0" allowfullscreen="" width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                </div>
             </div>
         </div>
-    </div>
-  </ion-content>
+    </ion-content>
 </ion-view>

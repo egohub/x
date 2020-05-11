@@ -1,27 +1,16 @@
-<!-- <ion-view title="Korea" id="page4">
-  <ion-content padding="true" class="has-header">
-    <ion-list id="korea-list5" class="manual-list-fullwidth">
-      <ion-item class="item-thumbnail-left" id="korea-list-item12" ui-sref="tabs.koreaWatch()">
-        <h2>Item</h2>
-        <p style="white-space:normal;">This is sample for korea films. Tv series and Filims. This is sample for korea films. </p>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-view> -->
-
 <ion-view title="Korea" hide-back-button="true" id="page2">
-  <ion-content padding="false" class="has-header">
-      <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <ion-content padding="false" class="has-header">
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
 
-      <ion-list id="movies-list4" >
-          <ion-item class="item-thumbnail-left" id="movies-list-item23" ui-sref="tabs.koreaWatch({id:m.id})" ng-repeat="m in posts">
-              <img ng-src="{{m.img}}">
-              <h2>{{m.title}}</h2>
-              <p style="white-space:normal;">{{m.year}}</p>
-          </ion-item>
-      </ion-list>
+        <ion-list id="movies-list4">
+            <ion-item class="item-thumbnail-left" id="movies-list-item23" ui-sref="tabs.koreaWatch({id:m.id})" ng-repeat="m in posts">
+                <img ng-src="{{m.img}}">
+                <h2 class="kortext">{{m.title}}</h2>
+                <p style="white-space:normal;" class="titletext">{{m.year}}</p>
+            </ion-item>
+        </ion-list>
 
-      <ion-infinite-scroll ng-if="moreDataExists()" on-infinite="loadMore()" distance="1%" immediate-check="false">
-      </ion-infinite-scroll>
-  </ion-content>
+        <ion-infinite-scroll ng-if="moreDataExists()" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
 </ion-view>

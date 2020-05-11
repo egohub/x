@@ -1,17 +1,23 @@
 angular.module('app.home', [])
- 
-.controller('homeCtrl', HomeCtrl)
-.controller('homeDetailCtrl', HomeDetailCtrl)
 
-function HomeCtrl($scope, $log, $timeout, config, DataLoader) {
-    
+.controller('homeCtrl', HomeCtrl)
+    .controller('homeDetailCtrl', HomeDetailCtrl)
+
+function HomeCtrl($scope, $ionicLoading, $log, $timeout, config, DataLoader) {
+
     $scope.moreItems = false;
 
     $scope.loadPosts = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner> ',
+            duration: 3000
+        }).then(function() {
+            console.log("The loading indicator is now displayed");
+        });
 
         // Get all of our posts
         DataLoader.get('https://moviechannel.herokuapp.com/movies/').then(function(response) {
-
+            $ionicLoading.hide();
             $scope.posts = response.data.results;
 
             $scope.moreItems = true;
@@ -61,18 +67,20 @@ function HomeCtrl($scope, $log, $timeout, config, DataLoader) {
 };
 
 
-function HomeDetailCtrl($scope, $stateParams, movieService) {
+function HomeDetailCtrl($scope, $stateParams, $ionicLoading, movieService) {
 
     $scope.tabName = "tab3";
-    movieService.getMovieId($stateParams.slug).then(function (result) {
+    $ionicLoading.show({
+        template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner> ',
+        duration: 3000
+    }).then(function() {
+        console.log("The loading indicator is now displayed");
+    });
+    movieService.getMovieId($stateParams.slug).then(function(result) {
         console.log(result);
+        $ionicLoading.hide();
         $scope.data = result;
-    }, function (error) {
-       // consol.log(error.statusText);
+    }, function(error) {
+        // consol.log(error.statusText);
     });
 }
-// .controller('homeDetailCtrl', ['$scope', '$stateParams', 
-// function ($scope, $stateParams) {
-
-
-// }])
